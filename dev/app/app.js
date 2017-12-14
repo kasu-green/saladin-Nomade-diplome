@@ -1,12 +1,12 @@
 // Création des classes
-// import { firebaseProvider } from './providers/firebase/firebase-provider';
+import { FirebaseProvider } from './providers/firebase/firebase-provider';
 import { LogIn } from './pages/login/login';
 // import { userPage } from './pages/users/userpage';
 
 class myApp {
   constructor() {
     this.app = document.querySelector('myApp');
-    //this.fb = new FirebaseProvider();
+    this.fb = new FirebaseProvider();
     this.start();
   }
 
