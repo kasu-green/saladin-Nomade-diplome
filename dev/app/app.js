@@ -11,24 +11,21 @@ class myApp {
   }
 
   start() {
-    //detect if user is connected...
-    // this.fb.auth.onAuthStateChanged( user => {
-    //   // if connected => new UserPage(this.app)
-    //   if (user) {
-    //     new userPage(this.app, this.fb, user);
-    //     // alert ('TODO')
-    //   }
-    //   // if NOT connected => new HomePage(this.app)
-    //   else {
-    //     new HomePage(this.app, this.fb);
-    //   }
-    // })
+    console.log('hello')
+    // detect if user is connected...
+    this.fb.auth.onAuthStateChanged(user=> {
+      // if connected => new UserPage(this.app)
+      if (user) {
+        // new userPage(this.app, this.fb, user);
+        alert ('TODO')
+      }
+      // if NOT connected => new HomePage(this.app)
+      else {
+        // new HomePage(this.app, this.fb);
+      }
+    })
 
   }
 }
 
-
-// Afficher les classes
 new myApp();
-
-//new HomePage()

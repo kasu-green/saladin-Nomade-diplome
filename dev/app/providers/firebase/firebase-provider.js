@@ -4,12 +4,12 @@ import { CONFIG } from './config'
 
 export class FirebaseProvider {
   constructor() {
-    // this.path = ''
+    this.path = ''
     // init fb
     firebase.initializeApp(CONFIG);
     // init fb.auth()
-    // this.auth = firebase.auth();
-    // this.database = firebase.database();
+    this.auth = firebase.auth();
+    this.database = firebase.database();
     //console.log(firebase.database())
   }
 
