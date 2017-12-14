@@ -9,17 +9,25 @@ export class LogIn {
 
   initUI() {
     this.app.innerHTML = `
-    <header>
+    <header class="flex align-center">
       <img src="../src/img/salad.png" alt="logo Saladin">
-      <h1>Se Connecter</h1>
+      <h2>Se Connecter</h2>
     </header>
 
-    <form id="loginForm">
-      <input class="email" type="email" placeholder="email">
-      <input class="password" type="password" placeholder="password">
-      <button class="submit" type="submit">Log In</button>
-      <p id="switchForm">Click here to create new account</p>
-    </form>
+    <section class="cover flex flex-column align-center just-center">
+
+      <h1>Bienvenu sur Saladin !</h1>
+      <form id="loginForm" class="flex flex-column">
+        <input class="email" type="email" placeholder="email">
+        <input class="password" type="password" placeholder="password">
+        <button class="submit" type="submit">Se connecter</button>
+        <p id="switchForm">
+          Si vous ne possédez pas de compte,<br>
+          <span class="underline">cliquez-ici</span>
+        </p>
+      </form>
+
+    </section>
     `
   }
   submit() {
@@ -48,17 +56,20 @@ export class LogIn {
   loadEvent() {
     // switchForm
     document.getElementById('switchForm').addEventListener('click', event=> {
-     console.log([...document.getElementById('switchForm').classList].includes('create'))
      switch ([...document.getElementById('switchForm').classList].includes('create')) {
        case false:
          document.getElementById('switchForm').classList.toggle('create')
-         document.getElementById('switchForm').innerHTML = 'Click here to login with existing account'
-         document.forms[0].querySelector("button[type='submit']").innerHTML = 'Create an account'
+         document.getElementById('switchForm').innerHTML = `
+             Si vous possédez un compte,<br>
+             <span class="underline">cliquez-ici</span>`
+         document.forms[0].querySelector("button[type='submit']").innerHTML = 'Créer un compte'
          break;
        case true:
          document.getElementById('switchForm').classList.toggle('create')
-         document.getElementById('switchForm').innerHTML = 'Click here to create new account'
-         document.forms[0].querySelector("button[type='submit']").innerHTML = 'Log In'
+         document.getElementById('switchForm').innerHTML = `
+             Si vous ne possédez pas de compte,<br>
+             <span class="underline">cliquez-ici</span>`
+         document.forms[0].querySelector("button[type='submit']").innerHTML = 'Se connecter'
          break;
        default:
      }
