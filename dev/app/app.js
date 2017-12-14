@@ -11,7 +11,6 @@ class myApp {
   }
 
   start() {
-    console.log('hello')
     // detect if user is connected...
     this.fb.auth.onAuthStateChanged(user=> {
       // if connected => new UserPage(this.app)
@@ -21,7 +20,7 @@ class myApp {
       }
       // if NOT connected => new HomePage(this.app)
       else {
-        // new HomePage(this.app, this.fb);
+        new LogIn(this.app, this.fb);
       }
     })
 

@@ -10,7 +10,8 @@ export class LogIn {
   initUI() {
     this.app.innerHTML = `
     <header>
-      <h1>Hello World!!!!!!</h1>
+      <img src="../src/img/salad.png" alt="logo Saladin">
+      <h1>Se Connecter</h1>
     </header>
 
     <form id="loginForm">

@@ -1,3 +1,9 @@
 body {
   background: coral;
 }
+
+header {
+  bakcground-color: green;
+  height: 80px;
+  width: 100%;;
+}

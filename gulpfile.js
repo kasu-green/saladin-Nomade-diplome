@@ -8,6 +8,7 @@ var removeHtmlComments  = require('gulp-remove-html-comments');
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
 var concat = require('gulp-concat');
+var sass = require('gulp-sass');
 
 // Config of project folders
 var config = {
@@ -80,6 +81,13 @@ gulp.task('css', function(){
   .pipe(reload({stream:true}));
 })
 
+gulp.task('sass', function () {
+  return gulp.src('./dev/src/sass/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(concat('style.css'))
+    .pipe(gulp.dest(config.desDir + '/src/css'));
+});
+
 // Task to run local server
 gulp.task("startServer",  function() {
   browserSync.init({
@@ -101,6 +109,8 @@ gulp.task('watch', function() {
   gulp.watch('./dev/src/css/*.*',['css']); 
   // watch all html template file changes
   gulp.watch('./dev/**/*.html', ['copy-html']); 
+  // watch sass files
+  gulp.watch('./sass/**/*.scss', ['sass']);
 });
 
 // task to run all task in parallel
