@@ -1,3 +1,5 @@
+import { LoginHTML } from './login-html'
+
 export class LogIn {
   constructor(app, fb) {
     this.app = app;
@@ -7,29 +9,13 @@ export class LogIn {
     this.loadEvent();
   }
 
-  initUI() {
-    this.app.innerHTML = `
-    <header class="flex align-center">
-      <img src="../src/img/salad.png" alt="logo Saladin">
-      <h2>Se Connecter</h2>
-    </header>
-
-    <section class="cover flex flex-column align-center just-center">
-
-      <h1>Bienvenu sur Saladin !</h1>
-      <form id="loginForm" class="flex flex-column">
-        <input class="email" type="email" placeholder="email">
-        <input class="password" type="password" placeholder="password">
-        <button class="submit" type="submit">Se connecter</button>
-        <p id="switchForm">
-          Si vous ne possédez pas de compte,<br>
-          <span class="underline">cliquez-ici</span>
-        </p>
-      </form>
-
-    </section>
-    `
+  initUI(){
+    let html = LoginHTML({
+      title:this.title
+    })
+    this.app.innerHTML = html;
   }
+
   submit() {
     document.querySelector("button[type='submit']").addEventListener('click', event => {
       event.preventDefault();
