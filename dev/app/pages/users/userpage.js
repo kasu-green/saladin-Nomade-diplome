@@ -1,4 +1,5 @@
 import { UserPageHTML } from './userpage-html'
+import { CreateForm } from '../createform/createform'
 
 export class userPage {
   constructor(app, fb, user) {
@@ -25,6 +26,11 @@ export class userPage {
     document.getElementById('logout').addEventListener('click', e=> {
       this.fb.auth.signOut()
     })
+    // Ajout d'un nouveau patient
+    document.getElementById('addSubject').addEventListener('click', _=> {
+      new CreateForm(this.app, this.fb);
+    })
+
     document.forms[0].addEventListener('submit', e => {
       e.preventDefault();
       let title = document.getElementById('title').value;
@@ -38,6 +44,7 @@ export class userPage {
       document.getElementById('title').value = '';
       document.getElementById('link').value = '';
     })
+  }
     // Effacer un élément de la liste
     // document.getElementById('linksList').addEventListener('click', e => {
     //   if (e.target.nodeName != 'BUTTON') {
@@ -82,5 +89,4 @@ export class userPage {
   //         .child(this.userid)
   //         .set(null);
   // }
-
 }

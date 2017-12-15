@@ -71,23 +71,26 @@ gulp.task('fonts-dep', function(){
 })
 
 gulp.task('sass', function () {
-  return gulp.src('./dev/src/sass/**/*.scss')
+  return gulp.src(["node_modules/materialize-css/dist/css/materialize.min.css",
+    "./dev/src/css/*.*",
+    './dev/src/sass/**/*.scss'])
     .pipe(sass().on('error', sass.logError))
     .pipe(concat('style.css'))
-    .pipe(gulp.dest(config.desDir + '/src/css'));
+    .pipe(gulp.dest(config.desDir + '/src/css'))
+    .pipe(reload({stream:true}));
 });
 
 // Task to concat style.css with all *.css dependencies
-gulp.task('css', function(){
-  return gulp.src([
-    "node_modules/materialize-css/dist/css/materialize.min.css",
-    "./dev/src/css/*.*",
-
-  ])
-  .pipe(concat('style.css'))
-  .pipe(gulp.dest(config.desDir + '/src/css'))
-  .pipe(reload({stream:true}));
-})
+// gulp.task('css', function(){
+//   return gulp.src([
+//     "node_modules/materialize-css/dist/css/materialize.min.css",
+//     "./dev/src/css/*.*",
+//
+//   ])
+//   .pipe(concat('style.css'))
+//   .pipe(gulp.dest(config.desDir + '/src/css'))
+//   .pipe(reload({stream:true}));
+// })
 
 // Task to run local server
 gulp.task("startServer",  function() {
@@ -107,7 +110,7 @@ gulp.task('watch', function() {
   // watch static files
   gulp.watch(["./dev/src/**/*.*", "!./dev/src/css/**.*", "!./dev/src/bower_components{,/**}"], ['copyStaticFiles']); 
   // watch css
-  gulp.watch('./dev/src/css/*.*',['css']); 
+//  gulp.watch('./dev/src/css/*.*',['css']); 
   // watch all html template file changes
   gulp.watch('./dev/**/*.html', ['copy-html']); 
   // watch sass files
@@ -120,7 +123,7 @@ gulp.task("run",[
   'copy-html', // html files
   'copyStaticFiles', // static fies
   'js-dep', // js dependencies files
-  'css', // css files
+  //'css', // css files
   'sass',
   'fonts-dep' // fonts files
 ]);
