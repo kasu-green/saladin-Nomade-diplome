@@ -15,22 +15,17 @@ export function CreateFormHTML(data){
 
     <section class="cover flex flex-column align-center just-center">
       <form id="searchForm" action="" class="flex align-center">
-        <input type="text" placeholder="recherche">
+        <!-- <input type="text" placeholder="recherche"> -->
         <!-- Switch -->
         <div class="switch">
           <label>
-            Off
-            <input type="checkbox">
+            Nouveau sujet <input id="newSubject" type="checkbox">
             <span class="lever"></span>
-            On
           </label>
         </div>
-        <button id="btnSearch" class="background bg-cover"></button>
       </form>
 
       <ul id="listSubjects"></ul>
-
-      <button id="addSubject">+</button>
 
     </section>
   `

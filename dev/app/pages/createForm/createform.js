@@ -7,7 +7,7 @@ export class CreateForm {
     // this.userid = user.uid;
     this.fb = fb;
     this.initUI();
-    // this.loadEventUI();
+    this.loadEventUI();
   //  this.readDatabase();
   //  this.firebaseReadRemoved();
   }
@@ -17,6 +17,25 @@ export class CreateForm {
       title:this.title
     })
     this.app.innerHTML = html;
+  }
+
+  loadEventUI() {
+    document.getElementById('newSubject').addEventListener('change', e=> {
+      let test = e.target.checked;
+      if (test == true) {
+        this.createSubjectNumber();
+      } else {
+        this.searchSubjectNumber();
+      }
+    })
+  }
+
+  createSubjectNumber () {
+    console.log('ça marche !');
+  }
+
+  searchSubjectNumber() {
+    console.log("c'est nul :( ");
   }
 
 }
