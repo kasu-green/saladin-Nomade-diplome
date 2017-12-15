@@ -1,10 +1,11 @@
 import { CreateFormHTML } from './createform-html'
+import { FirebaseProvider } from '../../providers/firebase/firebase-provider'
 
 export class CreateForm {
   constructor(app, fb) {
     this.app = app;
-    // this.email = user.email;
-    // this.userid = user.uid;
+    this.email = user.email;
+    this.userid = user.uid;
     this.fb = fb;
     this.initUI();
     this.loadEventUI();
@@ -32,6 +33,17 @@ export class CreateForm {
 
   createSubjectNumber () {
     console.log('ça marche !');
+    // Créer un numéro aléatoire entre 100 000 et 999 999
+    let numero = 100000 + parseInt(Math.random()*1000000);
+    console.log(numero);
+
+    this.fb.path = 'subjects'
+    this.fb.firebasePush(this.useruid, {
+      numéro
+    })
+
+
+
   }
 
   searchSubjectNumber() {

@@ -38,7 +38,7 @@ export class FirebaseProvider {
   }
 
   // database() Methodes
-  read(path){
+  firebaseRead(path){
     return this.database.ref(path)
   }
 
