@@ -1,8 +1,9 @@
+import { autoCompleteComponent } from '../../components/autocomplete/autocomplete-component'
 import { CreateFormHTML } from './createform-html'
 import { FirebaseProvider } from '../../providers/firebase/firebase-provider'
 
 export class CreateForm {
-  constructor(app, fb,user) {
+  constructor(app, fb, user) {
     this.app = app;
     // this.email = user.email;
     // this.userid = user.uid;
@@ -10,26 +11,31 @@ export class CreateForm {
     this.user = user;
     this.initUI();
     this.loadEventUI();
+    new autoCompleteComponent(app, fb, user);
   //  this.readDatabase();
   //  this.firebaseReadRemoved();
   }
 
   initUI(){
-    let html = CreateFormHTML({
-      title:this.title
-    })
+    let html = CreateFormHTML()
     this.app.innerHTML = html;
+    // this.app.querySelector('div.switch').insertAdjacentHTML('afterend', `
+    //   <div class="input-field col s12">
+    //     <input type="text" id="autocomplete-input" class="autocomplete">
+    //     <label for="autocomplete-input">Rechercher</label>
+    //   <div class="input-field col s12">
+    //  `)
   }
 
   loadEventUI() {
     document.getElementById('newSubject').addEventListener('change', e=> {
       let test = e.target.checked;
-      let searchBar = document.getElementById('subjectSearch');
+      let searchBar = document.getElementById('autocomplete-input');
       if (test == true) {
-        searchBar.classList.remove('active');
+        // searchBar.classList.remove('active');
         this.createSubjectNumber();
       } else {
-        searchBar.classList.add('active');
+        // searchBar.classList.add('active');
         this.searchSubjectNumber();
       }
     })
@@ -58,6 +64,7 @@ export class CreateForm {
     this.fb.firebaseRead("subjects").once('value').then(res=>{
       console.log(res.val())
     });
+
 
 
   }

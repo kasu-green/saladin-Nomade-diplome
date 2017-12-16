@@ -14,17 +14,16 @@ export function CreateFormHTML(data){
     </header>
 
     <section class="cover flex flex-column align-center just-center">
-      <form id="searchForm" action="" class="flex align-center">
+      <form id="searchForm" action="" class="flex flex-column align-stretch">
         <!-- <input type="text" placeholder="recherche"> -->
         <!-- Switch -->
         <div class="switch">
           <label class="flex just-between align-base">
-            Nouveau sujet <input id="newSubject" type="checkbox">
+            Créer un nouveau sujet ? <input id="newSubject" type="checkbox">
             <span class="lever"></span>
           </label>
-          <input id="subjectSearch" type="text" class="active" placeholder="recherche">
         </div>
-
+        <!-- Ajout autoCompleteComponent -->
       </form>
 
       <ul id="listSubjects"></ul>
