@@ -18,11 +18,13 @@ export function CreateFormHTML(data){
         <!-- <input type="text" placeholder="recherche"> -->
         <!-- Switch -->
         <div class="switch">
-          <label>
+          <label class="flex just-between align-base">
             Nouveau sujet <input id="newSubject" type="checkbox">
             <span class="lever"></span>
           </label>
+          <input id="subjectSearch" type="text" class="active" placeholder="recherche">
         </div>
+
       </form>
 
       <ul id="listSubjects"></ul>

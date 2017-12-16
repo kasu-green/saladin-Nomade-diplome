@@ -4,6 +4,7 @@ import { CreateForm } from '../createform/createform'
 export class userPage {
   constructor(app, fb, user) {
     this.app = app;
+    this.user = user;
     this.email = user.email;
     this.userid = user.uid;
     this.fb = fb;
@@ -28,7 +29,7 @@ export class userPage {
     })
     // Ajout d'un nouveau patient
     document.getElementById('addSubject').addEventListener('click', _=> {
-      new CreateForm(this.app, this.fb);
+      new CreateForm(this.app, this.fb, this.user);
     })
 
     document.forms[0].addEventListener('submit', e => {

@@ -7179,3 +7179,11 @@ form#searchForm button#btnSearch {
   width: 40px;
   background-color: transparent;
   border: none; }
+
+input#subjectSearch.active {
+  height: 3rem;
+  border-bottom: 1px solid #9e9e9e; }
+
+input#subjectSearch {
+  height: 0px;
+  border-bottom: none; }
