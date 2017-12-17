@@ -11,20 +11,28 @@ export class CreateForm {
     this.user = user;
     this.initUI();
     this.loadEventUI();
-    new autoCompleteComponent(app, fb, user);
+    this.autoComplete = new autoCompleteComponent(app, fb, user);
+
+
+    this.reloadData();
   //  this.readDatabase();
   //  this.firebaseReadRemoved();
+  }
+
+  reloadData(){
+    this.fb.firebaseRead("subjects").once('value').then(res=>{
+      let result = res.val();
+      let auto = {};
+      for ( let key in result) {
+        auto[key] = null;
+      }
+      this.autoComplete.configure('div.switch', auto, 'afterend');
+    });
   }
 
   initUI(){
     let html = CreateFormHTML()
     this.app.innerHTML = html;
-    // this.app.querySelector('div.switch').insertAdjacentHTML('afterend', `
-    //   <div class="input-field col s12">
-    //     <input type="text" id="autocomplete-input" class="autocomplete">
-    //     <label for="autocomplete-input">Rechercher</label>
-    //   <div class="input-field col s12">
-    //  `)
   }
 
   loadEventUI() {

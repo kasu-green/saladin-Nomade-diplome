@@ -1,3 +1,4 @@
+import { autoCompleteComponent } from '../../components/autocomplete/autocomplete-component'
 import { UserPageHTML } from './userpage-html'
 import { CreateForm } from '../createform/createform'
 
@@ -10,8 +11,19 @@ export class userPage {
     this.fb = fb;
     this.initUI();
     this.loadEventUI();
-  //  this.readDatabase();
-  //  this.firebaseReadRemoved();
+    this.autoComplete = new autoCompleteComponent(app, fb, user);
+    this.reloadData();
+  }
+
+  reloadData(){
+    this.fb.firebaseRead("subjects").once('value').then(res=>{
+      let result = res.val();
+      let auto = {};
+      for ( let key in result) {
+        auto[key] = null;
+      }
+      this.autoComplete.configure('#userSearchForm', auto, 'afterbegin');
+    });
   }
 
   initUI(){

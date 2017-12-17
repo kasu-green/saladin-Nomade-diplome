@@ -7154,7 +7154,8 @@ header {
   position: fixed;
   top: 0;
   right: 0;
-  left: 0; }
+  left: 0;
+  z-index: 1000; }
   header nav {
     width: 100%;
     max-width: 1024px;
@@ -7176,7 +7177,7 @@ header {
 form#searchForm button#btnSearch {
   background-image: url("../img/iconmonstr-magnifier-5-240.png");
   height: 40px;
-  width: 40px;
+  width: 50px;
   background-color: transparent;
   border: none; }
 
