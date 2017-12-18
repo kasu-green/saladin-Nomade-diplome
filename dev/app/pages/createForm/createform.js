@@ -1,6 +1,8 @@
 import { autoCompleteComponent } from '../../components/autocomplete/autocomplete-component'
 import { CreateFormHTML } from './createform-html'
 import { FirebaseProvider } from '../../providers/firebase/firebase-provider'
+import { modelFbComponent } from '../../components/firebase/modelFirebase-component'
+
 
 export class CreateForm {
   constructor(app, fb, user) {
@@ -11,12 +13,10 @@ export class CreateForm {
     this.user = user;
     this.initUI();
     this.loadEventUI();
+    this.model = new modelFbComponent(app, fb, user);
     this.autoComplete = new autoCompleteComponent(app, fb, user);
 
-
     this.reloadData();
-  //  this.readDatabase();
-  //  this.firebaseReadRemoved();
   }
 
   reloadData(){
@@ -36,33 +36,45 @@ export class CreateForm {
   }
 
   loadEventUI() {
+    // Switch(checkbox) pour ajouter un nouveau sujet
     document.getElementById('newSubject').addEventListener('change', e=> {
       let test = e.target.checked;
       let searchBar = document.getElementById('autocomplete-input');
       if (test == true) {
-        // searchBar.classList.remove('active');
         this.createSubjectNumber();
       } else {
-        // searchBar.classList.add('active');
         this.searchSubjectNumber();
       }
     })
   }
 
   createSubjectNumber () {
-    console.log('ça marche !');
-    // Créer un numéro aléatoire entre 100 000 et 999 999
-    let numero = 100000 + parseInt(Math.random()*1000000);
+      this.model.createSubject();
 
-    this.fb.path = 'subjects'
-    this.fb.firebaseRead("subjects/"+numero).once('value').then(res=>{
-      if( res.val() == null ){
-        //Le numero n'existe pas
-        this.fb.firebaseSet(numero, {owner : this.user.uid });
-      } else {
-        this.createSubjectNumber();
-      }
-    });
+    //   console.log(snapshot.key);
+    //   debugger;
+    //   if (numero == snapshot.val().numero) {
+    //     console.log("c'est le même");
+    //   } else {
+    //     this.fb.firebasePush('subjects', {owner : this.user.uid, numero});
+    //   }
+    // })
+
+    //
+
+    // this.fb.path = 'subjects'
+    // this.fb.firebaseRead('subjects/'+numero).once('value').then(res=>{
+    //
+    //   console.log(res.val());
+    //   if( res.val() == null ){
+    //     //Le numero n'existe pas
+    //     this.fb.firebasePush(this.key, { owner : this.user.uid, numero });
+    //   } else {
+    //
+    //     this.createSubjectNumber();
+    //     debugger;
+    //   }
+    // });
   }
 
   searchSubjectNumber() {

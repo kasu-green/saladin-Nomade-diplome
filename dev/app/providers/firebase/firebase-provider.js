@@ -42,11 +42,19 @@ export class FirebaseProvider {
     return this.database.ref(path)
   }
 
-  firebasePush(uid,datas){
-    this.database.ref(this.path)
-            .child(uid)
+  firebasePush(path, datas){
+    this.database.ref(path)
+            //.child(uid)
             .push(datas)
   }
+
+//   // add to FB collection with .push()
+// firebasePush(dataValue){
+//   database.ref('list')
+//           .push({
+//             name: dataValue
+//           })
+// }
 
   firebaseUpdate(key,datas){
     this.database.ref(this.path)
