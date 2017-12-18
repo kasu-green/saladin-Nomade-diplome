@@ -1,9 +1,12 @@
 import { autoCompleteComponent } from '../../components/autocomplete/autocomplete-component'
 import { UserPageHTML } from './userpage-html'
 import { CreateForm } from '../createform/createform'
+import { modelFbComponent } from '../../components/firebase/modelFirebase-component'
 
 export class userPage {
   constructor(app, fb, user) {
+    this.autoComplete = new autoCompleteComponent(app);
+    this.fbModel = new modelFbComponent(app, fb, user);
     this.app = app;
     this.user = user;
     this.email = user.email;
@@ -11,26 +14,22 @@ export class userPage {
     this.fb = fb;
     this.initUI();
     this.loadEventUI();
-    this.autoComplete = new autoCompleteComponent(app, fb, user);
-    this.reloadData();
+
+
   }
 
-  reloadData(){
-    this.fb.firebaseRead("subjects").once('value').then(res=>{
-      let result = res.val();
-      let auto = {};
-      for ( let key in result) {
-        auto[key] = null;
-      }
-      this.autoComplete.configure('#userSearchForm', auto, 'afterbegin');
-    });
-  }
+
 
   initUI(){
+
     let html = UserPageHTML({
       title:this.title
     })
     this.app.innerHTML = html;
+    this.fbModel.getSubjectsForAutoComplete().then (response => {
+
+      this.autoComplete.configure('#userSearchForm', response, 'afterbegin');
+    });
   }
 
 

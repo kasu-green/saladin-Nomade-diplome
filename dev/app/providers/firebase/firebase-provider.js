@@ -48,14 +48,6 @@ export class FirebaseProvider {
             .push(datas)
   }
 
-//   // add to FB collection with .push()
-// firebasePush(dataValue){
-//   database.ref('list')
-//           .push({
-//             name: dataValue
-//           })
-// }
-
   firebaseUpdate(key,datas){
     this.database.ref(this.path)
             .child(key)

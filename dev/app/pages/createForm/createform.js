@@ -1,4 +1,4 @@
-import { autoCompleteComponent } from '../../components/autocomplete/autocomplete-component'
+ import { autoCompleteComponent } from '../../components/autocomplete/autocomplete-component'
 import { CreateFormHTML } from './createform-html'
 import { FirebaseProvider } from '../../providers/firebase/firebase-provider'
 import { modelFbComponent } from '../../components/firebase/modelFirebase-component'
@@ -7,32 +7,28 @@ import { modelFbComponent } from '../../components/firebase/modelFirebase-compon
 export class CreateForm {
   constructor(app, fb, user) {
     this.app = app;
+    this.fbModel = new modelFbComponent(app, fb, user);
+    this.autoComplete = new autoCompleteComponent(app);
+
     // this.email = user.email;
     // this.userid = user.uid;
     this.fb = fb;
     this.user = user;
     this.initUI();
     this.loadEventUI();
-    this.model = new modelFbComponent(app, fb, user);
-    this.autoComplete = new autoCompleteComponent(app, fb, user);
 
-    this.reloadData();
+
   }
 
-  reloadData(){
-    this.fb.firebaseRead("subjects").once('value').then(res=>{
-      let result = res.val();
-      let auto = {};
-      for ( let key in result) {
-        auto[key] = null;
-      }
-      this.autoComplete.configure('div.switch', auto, 'afterend');
-    });
-  }
 
   initUI(){
+
     let html = CreateFormHTML()
     this.app.innerHTML = html;
+    this.fbModel.getSubjectsForAutoComplete().then (response => {
+    //  debugger;
+      this.autoComplete.configure('div.switch', response, 'afterend');
+    });
   }
 
   loadEventUI() {
@@ -49,7 +45,7 @@ export class CreateForm {
   }
 
   createSubjectNumber () {
-      this.model.createSubject();
+      this.fbModel.createSubject();
 
     //   console.log(snapshot.key);
     //   debugger;
@@ -59,8 +55,6 @@ export class CreateForm {
     //     this.fb.firebasePush('subjects', {owner : this.user.uid, numero});
     //   }
     // })
-
-    //
 
     // this.fb.path = 'subjects'
     // this.fb.firebaseRead('subjects/'+numero).once('value').then(res=>{
@@ -78,14 +72,11 @@ export class CreateForm {
   }
 
   searchSubjectNumber() {
-    console.log("c'est nul :( ");
     this.fb.path = 'subjects'
 
     this.fb.firebaseRead("subjects").once('value').then(res=>{
       console.log(res.val())
     });
-
-
 
   }
 

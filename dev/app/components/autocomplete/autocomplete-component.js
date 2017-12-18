@@ -1,13 +1,7 @@
 export class autoCompleteComponent {
-  constructor(app, fb, user) {
+  constructor(app) {
     this.app = app;
-    // this.email = user.email;
-    // this.userid = user.uid;
-    this.fb = fb;
-    this.user = user;
-  //  this.initUI();
-    //this.loadEventUI();
-  //  this.autoComplete();
+
   }
 
   configure(selector, data, position){
