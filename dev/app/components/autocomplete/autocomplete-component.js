@@ -1,7 +1,6 @@
 export class autoCompleteComponent {
   constructor(app) {
     this.app = app;
-
   }
 
   configure(selector, data, position){
@@ -14,7 +13,7 @@ export class autoCompleteComponent {
 
   initUI(){
     this.app.querySelector(this.selector).insertAdjacentHTML(this.position, `
-      <div class="input-field col s12">
+      <div id="autoComplete" class="input-field col s12">
         <input type="text" id="autocomplete-input" autocomplete="off" class="autocomplete">
         <label for="autocomplete-input">Rechercher</label>
       <div class="input-field col s12">

@@ -1,7 +1,9 @@
- import { autoCompleteComponent } from '../../components/autocomplete/autocomplete-component'
+import { autoCompleteComponent } from '../../components/autocomplete/autocomplete-component'
+import { datePickerComponent } from '../../components/datepicker/datepicker-component'
+import { modelFbComponent } from '../../components/firebase/modelFirebase-component'
 import { CreateFormHTML } from './createform-html'
 import { FirebaseProvider } from '../../providers/firebase/firebase-provider'
-import { modelFbComponent } from '../../components/firebase/modelFirebase-component'
+
 
 
 export class CreateForm {
@@ -9,6 +11,7 @@ export class CreateForm {
     this.app = app;
     this.fbModel = new modelFbComponent(app, fb, user);
     this.autoComplete = new autoCompleteComponent(app);
+    this.datePicker = new datePickerComponent(app);
     this.fb = fb;
     this.user = user;
     this.initUI();
@@ -22,6 +25,7 @@ export class CreateForm {
     this.fbModel.getSubjectsForAutoComplete().then (response => {
       this.autoComplete.configure('div.switch', response, 'afterend');
     });
+    this.datePicker.configure('div.switch', 'afterend');
   }
 
   loadEventUI() {
