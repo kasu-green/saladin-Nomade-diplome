@@ -21,7 +21,11 @@ export function UserPageHTML(data){
 
       <ul id="listSubjects" class="collection with-header"></ul>
 
-      <button id="addSubject">+</button>
+      <div class="fixed-action-btn">
+        <a id="addSubject" class="btn-floating btn-large waves-effect waves-light red">
+          <i class="material-icons">add</i>
+        </a>
+      </div>
 
     </section>
   `

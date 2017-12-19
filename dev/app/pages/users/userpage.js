@@ -26,14 +26,11 @@ export class userPage {
     });
     // Lire la liste des sujets et l'afficher
     this.fb.firebaseRead('subjects').on('value', snapshot => {
-      console.log('datas->',snapshot.val())
-
-      let ul = document.querySelector('ul#listSubjects')
-      // remove all elements from UL
-      ul.innerHTML = '';
+      let element = document.querySelector('ul#listSubjects');
+      element.innerHTML = '';
       // then add all new elements to UL
       snapshot.forEach(item=> {
-        ul.innerHTML += `
+        element.innerHTML += `
           <li  id="${item.key}" class="collection-item">
             <div>
               ${item.val().numero}

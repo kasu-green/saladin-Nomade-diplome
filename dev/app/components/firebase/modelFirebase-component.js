@@ -61,8 +61,7 @@ export class modelFbComponent{
         }
         return auto;
     });
-
-
   }
+
 
 }
