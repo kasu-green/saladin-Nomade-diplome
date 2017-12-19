@@ -25,7 +25,7 @@ export class CreateForm {
     this.fbModel.getSubjectsForAutoComplete().then (response => {
       this.autoComplete.configure('div.switch', response, 'afterend');
     });
-    this.datePicker.configure('div.switch', 'afterend');
+    this.datePicker.configure('div.switch', 'afterend', this.datePickerCallback);
   }
 
   loadEventUI() {
@@ -40,13 +40,17 @@ export class CreateForm {
       }
     })
 
-    document.querySelectorAll('.picker__holder').addEventListener('click', element => {
+    document.querySelector('.picker__box').addEventListener('click', element => {
       console.log(element.target);
       let debut = document.querySelector('input[name="datePicker-start"]').value;
-      let fin = document.querySelector('input[name="datePicker-end"]').value;
+      //let fin = document.querySelector('input[name="datePicker-end"]').value;
       console.log('debut : ' +debut);
-      console.log('fin : ' +fin);
+      //console.log('fin : ' +fin);
     })
+  }
+
+  datePickerCallback(e,b,c){
+    debugger;
   }
 
   createSubjectNumber () {

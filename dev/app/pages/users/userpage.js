@@ -1,6 +1,6 @@
 import { autoCompleteComponent } from '../../components/autocomplete/autocomplete-component'
 import { UserPageHTML } from './userpage-html'
-import { CreateForm } from '../createform/createform'
+import { CreateForm } from '../createForm/createform'
 import { modelFbComponent } from '../../components/firebase/modelFirebase-component'
 
 export class userPage {

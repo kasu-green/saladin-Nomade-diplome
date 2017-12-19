@@ -3,9 +3,10 @@ export class datePickerComponent {
     this.app = app;
   }
 
-  configure(selector, position){
+  configure(selector, position, callback){
     this.selector = selector;
     this.position = position;
+    this.callback = callback;
     this.initUI();
     this.datePicker();
   }
@@ -28,17 +29,18 @@ export class datePickerComponent {
   }
 
   datePicker() {
-    $('.datepicker').pickadate({
-      selectMonths: true, // Creates a dropdown to control month
-      selectYears: 5, // Creates a dropdown of 15 years to control year,
-      monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-      weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
-      formatSubmit: 'dd/mm/yyyy',
-      clear: 'effacer',
-      today: 'aujourd\'hui',
-      closeOnSelect: true, // Close upon selecting a date,
-      hiddenName: true
-    });
-  }
+      $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 5, // Creates a dropdown of 15 years to control year,
+        monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+        weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+        formatSubmit: 'yyyy/mm/dd',
+        clear: 'effacer',
+        today: 'aujourd\'hui',
+        onClose: this.callback,
+        closeOnSelect: true, // Close upon selecting a date,
+        hiddenName: true
+      });
+    }
 
 }
