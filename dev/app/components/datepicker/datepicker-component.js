@@ -12,24 +12,32 @@ export class datePickerComponent {
 
   initUI(){
     this.app.querySelector(this.selector).insertAdjacentHTML(this.position, `
-      <div class="flex just-between align-end">
-        <div class="datepicker-start">
-          <label id="datePicker-start">Enquête alimentaire</label>
-          <input id="datePicker-start" type="text" class="datepicker" placeholder="Début">
+      <div id="datepicker">
+        <label>Enquête alimentaire</label>
+        <div class="datepicker-box flex just-between align-end">
+          <input id="datePicker-start" name="datePicker-start" type="text" class="datepicker" placeholder="Début">
+          <input id="datePicker-end" name="datePicker-end" type="text" class="datepicker" placeholder="Fin">
         </div>
-        <input id="datePicker-end" type="text" class="datepicker" placeholder="Fin">
       </div>
     `)
+  }
+
+  loadEventUI() {
+
+
   }
 
   datePicker() {
     $('.datepicker').pickadate({
       selectMonths: true, // Creates a dropdown to control month
-      selectYears: 15, // Creates a dropdown of 15 years to control year,
-      today: 'Today',
-      clear: 'Clear',
-      close: 'Ok',
-      closeOnSelect: false // Close upon selecting a date,
+      selectYears: 5, // Creates a dropdown of 15 years to control year,
+      monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+      weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+      formatSubmit: 'dd/mm/yyyy',
+      clear: 'effacer',
+      today: 'aujourd\'hui',
+      closeOnSelect: true, // Close upon selecting a date,
+      hiddenName: true
     });
   }
 

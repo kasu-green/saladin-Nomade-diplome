@@ -39,6 +39,14 @@ export class CreateForm {
         this.searchSubjectNumber();
       }
     })
+
+    document.querySelectorAll('.picker__holder').addEventListener('click', element => {
+      console.log(element.target);
+      let debut = document.querySelector('input[name="datePicker-start"]').value;
+      let fin = document.querySelector('input[name="datePicker-end"]').value;
+      console.log('debut : ' +debut);
+      console.log('fin : ' +fin);
+    })
   }
 
   createSubjectNumber () {
