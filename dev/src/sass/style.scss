@@ -12,8 +12,8 @@
 		0.4 -	Prefixers
 **/
 
-@import 'imports/reset';
-@import 'imports/colors';
+@import 'imports/vars/reset';
+@import 'imports/vars/colors';
 
 *,
 *:after,
@@ -43,7 +43,7 @@ body {
 	/!\ Don't forget to comment the others, because all of them are using the same vars /!\
 */
 // @import 'imports/12rem';
-@import 'imports/14rem';
+@import 'imports/vars/14rem';
 // @import 'imports/16rem';
 // @import 'imports/18rem';
 
@@ -107,7 +107,7 @@ a {
 
 
 /* 0.2 - FLEXBOX */
-@import 'imports/flexbox';
+@import 'imports/vars/flexbox';
 
 /* 0.3 - GENERAL CLASSES */
 .background {
@@ -138,13 +138,20 @@ a {
 
 }
 
+section {
+	max-width: 1024px;
+	width: 100%;
+	margin: 0px auto;
+	padding: 70px 20px;
+}
+
 /* 04 - PREFIXER */
 .transition {
 	-webkit-transition: all ease-in 0.2s;
 	transition: all ease-in 0.2s;
 }
 
-
-@import 'imports/header';
-@import 'imports/searchbar';
-@import 'imports/createform';
+@import 'imports/components/header';
+@import 'imports/components/autocomplete';
+@import 'imports/pages/userpage';
+@import 'imports/pages/createform';

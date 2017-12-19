@@ -13,13 +13,13 @@ export function UserPageHTML(data){
       </nav>
     </header>
 
-    <section class="cover flex flex-column align-center just-center">
+    <section class="flex flex-column align-center just-center">
       <form id="userSearchForm" action="" class="flex align-center">
         <!-- <input type="text" placeholder="recherche"> -->
         <button id="btnSearch" class="background bg-cover"></button>
       </form>
 
-      <ul id="listSubjects"></ul>
+      <ul id="listSubjects" class="collection with-header"></ul>
 
       <button id="addSubject">+</button>
 

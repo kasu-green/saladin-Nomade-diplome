@@ -7143,6 +7143,12 @@ a {
   min-height: 100%;
   margin: 0px auto; }
 
+section {
+  max-width: 1024px;
+  width: 100%;
+  margin: 0px auto;
+  padding: 70px 20px; }
+
 /* 04 - PREFIXER */
 .transition {
   -webkit-transition: all ease-in 0.2s;
@@ -7174,12 +7180,12 @@ header {
     line-height: inherit; }
 
 /* Fin Header */
-form#searchForm button#btnSearch {
-  background-image: url("../img/iconmonstr-magnifier-5-240.png");
-  height: 40px;
-  width: 50px;
-  background-color: transparent;
-  border: none; }
+ul.autocomplete-content {
+  position: absolute !important;
+  width: 100%; }
+
+#listSubjects {
+  width: 100%; }
 
 input#subjectSearch.active {
   height: 3rem;

@@ -53,18 +53,13 @@ export class modelFbComponent{
   // retourne une liste standardisée pour materialize autocomplete
   getSubjectsForAutoComplete(){
     return this.findAllSubjects().then (res => {
-      // chain promise
-      return new Promise ((resolve,reject)=>{
         let auto = {};
         let result = res.val();
-        console.log(result);
 
         for ( let key in result) {
           auto[result[key].numero] = null;
         }
-        resolve(auto);
-
-      });
+        return auto;
     });
 
 

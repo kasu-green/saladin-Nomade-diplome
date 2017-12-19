@@ -14,24 +14,39 @@ export class userPage {
     this.fb = fb;
     this.initUI();
     this.loadEventUI();
-
-
   }
 
-
-
   initUI(){
-
     let html = UserPageHTML({
       title:this.title
     })
     this.app.innerHTML = html;
     this.fbModel.getSubjectsForAutoComplete().then (response => {
-
       this.autoComplete.configure('#userSearchForm', response, 'afterbegin');
     });
-  }
+    // Lire la liste des sujets et l'afficher
+    this.fb.firebaseRead('subjects').on('value', snapshot => {
+      console.log('datas->',snapshot.val())
 
+      let ul = document.querySelector('ul#listSubjects')
+      // remove all elements from UL
+      ul.innerHTML = '';
+      // then add all new elements to UL
+      snapshot.forEach(item=> {
+        ul.innerHTML += `
+          <li  id="${item.key}" class="collection-item">
+            <div>
+              ${item.val().numero}
+              <a href="#" class="secondary-content">
+                <i class="material-icons">delete</i>
+                <i class="material-icons">navigate_next</i>
+              </a>
+            </div>
+          </li>
+        `
+      })
+    })
+  }
 
   loadEventUI(){
     // event logout

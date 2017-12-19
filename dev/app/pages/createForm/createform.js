@@ -9,24 +9,17 @@ export class CreateForm {
     this.app = app;
     this.fbModel = new modelFbComponent(app, fb, user);
     this.autoComplete = new autoCompleteComponent(app);
-
-    // this.email = user.email;
-    // this.userid = user.uid;
     this.fb = fb;
     this.user = user;
     this.initUI();
     this.loadEventUI();
-
-
   }
 
 
   initUI(){
-
     let html = CreateFormHTML()
     this.app.innerHTML = html;
     this.fbModel.getSubjectsForAutoComplete().then (response => {
-    //  debugger;
       this.autoComplete.configure('div.switch', response, 'afterend');
     });
   }
@@ -46,7 +39,6 @@ export class CreateForm {
 
   createSubjectNumber () {
       this.fbModel.createSubject();
-
     //   console.log(snapshot.key);
     //   debugger;
     //   if (numero == snapshot.val().numero) {

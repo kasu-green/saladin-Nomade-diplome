@@ -1,0 +1,32 @@
+header {
+  height: 50px;
+  background-color: $light-green;
+  position: fixed;
+  top: 0; right: 0; left: 0;
+  z-index: 1000;
+
+  nav {
+    width: 100%;
+    max-width: 1024px;
+    height: 100%;
+    max-height: 50px;
+    margin: 0px auto;
+    padding: 5px 0px;
+    background-color: $light-green;
+  }
+
+  div {
+    width: auto;
+    height: 100%;
+  }
+
+  img{
+    width: auto;
+    height: 100%;
+  }
+
+  h2 {
+    line-height: inherit;
+  }
+
+} /* Fin Header */
