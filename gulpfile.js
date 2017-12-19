@@ -96,11 +96,13 @@ gulp.task('sass', function () {
 gulp.task("startServer",  function() {
   browserSync.init({
     server: {
-        baseDir: config.desDir
+        baseDir: config.desDir,
     },
-    notify: true
+    notify: true,
+    browser: 'chrome'
   });
 });
+
 
 // Task to watch wich file is changing
 // and load the right task
