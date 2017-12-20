@@ -7,7 +7,7 @@ import { FirebaseProvider } from '../../providers/firebase/firebase-provider'
 export class CreateForm {
   constructor(app, fb, user) {
     this.app = app;
-    this.dateList = new Array();
+    this.dateList = [];
     this.fbModel = new modelFbComponent(app, fb, user);
     this.autoComplete = new autoCompleteComponent(app);
     this.datePicker = new datePickerComponent(app);
@@ -24,6 +24,13 @@ export class CreateForm {
       this.autoComplete.configure('div.switch', response, 'afterend');
     });
     this.datePicker.configure('div.switch', 'afterend', this.datePickerCallback);
+    document.querySelector('div#datepicker').insertAdjacentHTML('afterend', `
+      <div id="showDays">
+        <label>Jours</label>
+        <ul class="collection">
+        </ul>
+      </div>
+    `)
   }
 
   loadEventUI() {
@@ -40,27 +47,41 @@ export class CreateForm {
   }
 
   datePickerCallback(e,b,c){
-    this.dateList = new Array() ;
+    let element = document.querySelector('div#showDays > ul.collection');
+    element.innerHTML = '';
+    this.dateList = [];
+    let date = {};
     let debut = document.querySelector('input[name="datePicker-start"]').value;
     let fin = document.querySelector('input[name="datePicker-end"]').value;
     let dateDebut  = moment(debut, "YYYY-MM-DD");
     let dateFin = moment(fin, "YYYY-MM-DD");
     let numdays = dateFin.diff(dateDebut, "days");
 
-    console.log('debut' +debut,'fin' + fin, 'date debut' +dateDebut, 'Date Fin' +dateFin);
+    console.log(dateDebut, dateFin, numdays);
 
-    if ( dateFin == NaN || dateFin <= dateDebut ) {
-      dateFin = dateDebut;
-      console.log('nouvelle date de fin : '+dateFin);
-    }
-    if ( numdays ) {
-      for(let i = 0; i < numdays+1; i++){
-        let newDate = moment(dateDebut,'YYYY-MM-DD').add(i, 'days').format("ddd D MMM YY");
-        this.dateList.push (newDate);
+    if ( numdays >= 0 ) {
+      element.innerHTML = '';
+      moment.locale('fr');
+      for(var i = 0; i < numdays + 1 ; i++){
+        var newDate = moment(dateDebut,'YYYY-MM-DD').add(i, 'days');
+        var oDate = {
+          formatted : newDate.format('ddd D MMM YY'),
+          raw: newDate.format('YYYY-MM-DD')
+        }
+        this.dateList.push (oDate);
       }
-      console.log(this.dateList);
 
-      this.datePicker.configure('div.switch', 'afterend', this.datePicker.showDays);
+      this.dateList.forEach( d => {
+        element.innerHTML += `
+          <li class="collection-item">
+            <span class="title">${d.formatted}</span>
+            <p class="kcalAverage">...</p>
+            <a href="#!" class="secondary-content"><i class="material-icons">navigate_next</i></a>
+          </li>
+        `
+      })
+    //  debugger;
+      console.log(this.dateList);
     }
 
 

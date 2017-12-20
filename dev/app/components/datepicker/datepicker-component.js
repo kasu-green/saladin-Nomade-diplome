@@ -23,17 +23,17 @@ export class datePickerComponent {
     `)
   }
 
-  showDays() {
-    this.app.querySelector(this.selector).insertAdjacentHTML(this.position, `
-      <div id="datepicker">
-        <label>jour</label>
-        <div class="datepicker-box flex just-between align-end">
-          <input id="datePicker-start" name="datePicker-start" type="text" class="datepicker" placeholder="Début">
-          <input id="datePicker-end" name="datePicker-end" type="text" class="datepicker" placeholder="Fin">
-        </div>
-      </div>
-    `)
-  }
+  // showDays() {
+  //   this.app.querySelector(this.selector).insertAdjacentHTML(this.position, `
+  //     <div id="datepicker">
+  //       <label>jour</label>
+  //       <div class="datepicker-box flex just-between align-end">
+  //         <input id="datePicker-start" name="datePicker-start" type="text" class="datepicker" placeholder="Début">
+  //         <input id="datePicker-end" name="datePicker-end" type="text" class="datepicker" placeholder="Fin">
+  //       </div>
+  //     </div>
+  //   `)
+  // }
 
   datePicker() {
     let options ={
