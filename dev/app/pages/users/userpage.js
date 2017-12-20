@@ -27,6 +27,11 @@ export class userPage {
     // Lire la liste des sujets et l'afficher
     this.fb.firebaseRead('subjects').on('value', snapshot => {
       let element = document.querySelector('ul#listSubjects');
+
+      // si on n'est pas dans la page, l'event reste bindé, du coup on ignore simplement si on ne trouve pas le Node
+      if(element == null){
+        return;
+      }
       element.innerHTML = '';
       // then add all new elements to UL
       snapshot.forEach(item=> {

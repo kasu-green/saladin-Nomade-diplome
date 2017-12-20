@@ -40,7 +40,7 @@ export class CreateForm {
       let test = e.target.checked;
       let searchBar = document.getElementById('autocomplete-input');
       if (test == true) {
-        debugger;
+
         this.createSubjectNumber();
       } else {
         this.searchSubjectNumber();
@@ -68,7 +68,7 @@ export class CreateForm {
 
     if ( numdays >= 0 ) {
       element.innerHTML = '<li class="collection-header"><h4>Jours</h4></li>';
-      moment.locale('fr');
+      moment().locale('fr');
       for(var i = 0; i < numdays + 1 ; i++){
         var newDate = moment(dateDebut,'YYYY-MM-DD').add(i, 'days');
         var oDate = {
