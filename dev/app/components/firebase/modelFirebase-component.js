@@ -43,6 +43,7 @@ export class modelFbComponent{
                 });
             }
         });
+      //return numero;
   }
 
   // Pour l'autoComplete

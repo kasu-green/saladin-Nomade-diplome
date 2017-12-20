@@ -40,13 +40,18 @@ export class CreateForm {
       let test = e.target.checked;
       let searchBar = document.getElementById('autocomplete-input');
       if (test == true) {
+        debugger;
         this.createSubjectNumber();
       } else {
         this.searchSubjectNumber();
       }
     })
-    document.getElementById('navigate_back').addEventListener('click', _ => {
-      new userPage(this.app, this.fb, this.user);
+    document.getElementById('navigate_back').addEventListener('click', e => {
+      let btn = e.target.id;
+      //debugger;
+      if ( btn == 'navigate_back' ) {
+        new userPage(this.app, this.fb, this.user);
+      }
     })
   }
 

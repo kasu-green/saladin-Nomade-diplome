@@ -19,7 +19,7 @@ export function UserPageHTML(data){
         <button id="btnSearch" class="background bg-cover"></button>
       </form>
 
-      <ul id="listSubjects" class="collection with-header"></ul>
+      <ul id="listSubjects" class="collection"></ul>
 
       <div class="fixed-action-btn">
         <a id="addSubject" class="btn-floating btn-large waves-effect waves-light red">
