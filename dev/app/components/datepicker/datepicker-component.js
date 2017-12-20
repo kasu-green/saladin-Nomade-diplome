@@ -23,11 +23,6 @@ export class datePickerComponent {
     `)
   }
 
-  loadEventUI() {
-
-
-  }
-
   datePicker() {
     let options ={
       selectMonths: true, // Creates a dropdown to control month

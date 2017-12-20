@@ -4,8 +4,6 @@ import { modelFbComponent } from '../../components/firebase/modelFirebase-compon
 import { CreateFormHTML } from './createform-html'
 import { FirebaseProvider } from '../../providers/firebase/firebase-provider'
 
-
-
 export class CreateForm {
   constructor(app, fb, user) {
     this.app = app;
@@ -17,7 +15,6 @@ export class CreateForm {
     this.initUI();
     this.loadEventUI();
   }
-
 
   initUI(){
     let html = CreateFormHTML()
@@ -44,37 +41,28 @@ export class CreateForm {
   datePickerCallback(e,b,c){
     let debut = document.querySelector('input[name="datePicker-start"]').value;
     let fin = document.querySelector('input[name="datePicker-end"]').value;
-    var dateDebut  = moment(debut, "YYYY-MM-DD");
-    var dateFin = moment(fin, "YYYY-MM-DD");
-    var numdays = dateFin.diff(dateDebut, "days");
+    let dateDebut  = moment(debut, "YYYY-MM-DD");
+    let dateFin = moment(fin, "YYYY-MM-DD");
+    let numdays = dateFin.diff(dateDebut, "days");
 
-    console.log('debut' +debut,'fin' + fin, 'date debut' +dateDebut, 'Date Fin' +dateFin, 'jour' +numdays);
+    console.log('debut' +debut,'fin' + fin, 'date debut' +dateDebut, 'Date Fin' +dateFin);
+
+    // if ( numdays ) {
+
+    let dateList = new Array();
+
+    for(let i = 0; i < numdays+1; i++){
+      let newDate = moment(dateDebut,'YYYY-MM-DD').add(i, 'days').format("ddd D MMM YY");
+      dateList.push (newDate);
+    }
+    console.log(dateList);
+
+
+
   }
 
   createSubjectNumber () {
       this.fbModel.createSubject();
-    //   console.log(snapshot.key);
-    //   debugger;
-    //   if (numero == snapshot.val().numero) {
-    //     console.log("c'est le même");
-    //   } else {
-    //     this.fb.firebasePush('subjects', {owner : this.user.uid, numero});
-    //   }
-    // })
-
-    // this.fb.path = 'subjects'
-    // this.fb.firebaseRead('subjects/'+numero).once('value').then(res=>{
-    //
-    //   console.log(res.val());
-    //   if( res.val() == null ){
-    //     //Le numero n'existe pas
-    //     this.fb.firebasePush(this.key, { owner : this.user.uid, numero });
-    //   } else {
-    //
-    //     this.createSubjectNumber();
-    //     debugger;
-    //   }
-    // });
   }
 
   searchSubjectNumber() {
