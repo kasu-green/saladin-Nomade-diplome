@@ -14,10 +14,12 @@ export function CreateFormHTML(data){
     </header>
 
     <section id="createform" class="flex flex-column align-center just-center">
-      <a class="waves-effect waves-light btn-flat self-start">
+
+      <a id="navigate_back" class="waves-effect waves-light btn-flat self-start">
         <i class="material-icons left">navigate_before</i>
         Retour
       </a>
+
       <form id="searchForm" action="" class="flex flex-column align-stretch">
         <!-- Switch -->
         <div class="switch">
@@ -26,6 +28,7 @@ export function CreateFormHTML(data){
             <span class="lever"></span>
           </label>
         </div>
+
         <!-- Ajout autoCompleteComponent -->
 
         <!-- Ajout datePickerComponent -->

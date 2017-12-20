@@ -2,6 +2,7 @@ import { autoCompleteComponent } from '../../components/autocomplete/autocomplet
 import { datePickerComponent } from '../../components/datepicker/datepicker-component'
 import { modelFbComponent } from '../../components/firebase/modelFirebase-component'
 import { CreateFormHTML } from './createform-html'
+import { userPage } from '../users/userpage'
 import { FirebaseProvider } from '../../providers/firebase/firebase-provider'
 
 export class CreateForm {
@@ -43,6 +44,9 @@ export class CreateForm {
       } else {
         this.searchSubjectNumber();
       }
+    })
+    document.getElementById('navigate_back').addEventListener('click', _ => {
+      new userPage(this.app, this.fb, this.user);
     })
   }
 
