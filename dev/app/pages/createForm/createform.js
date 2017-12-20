@@ -39,23 +39,16 @@ export class CreateForm {
         this.searchSubjectNumber();
       }
     })
-
-    document.querySelector('.picker__box').addEventListener('click', element => {
-      console.log(element.target);
-      let debut = document.querySelector('input[name="datePicker-start"]').value;
-      //let fin = document.querySelector('input[name="datePicker-end"]').value;
-      console.log('debut : ' +debut);
-      //console.log('fin : ' +fin);
-    })
   }
 
   datePickerCallback(e,b,c){
     let debut = document.querySelector('input[name="datePicker-start"]').value;
-    let date = moment();
     let fin = document.querySelector('input[name="datePicker-end"]').value;
     var dateDebut  = moment(debut, "YYYY-MM-DD");
     var dateFin = moment(fin, "YYYY-MM-DD");
     var numdays = dateFin.diff(dateDebut, "days");
+
+    console.log('debut' +debut,'fin' + fin, 'date debut' +dateDebut, 'Date Fin' +dateFin, 'jour' +numdays);
   }
 
   createSubjectNumber () {

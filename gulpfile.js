@@ -48,7 +48,8 @@ gulp.task("copyStaticFiles", function(){
 gulp.task('js-dep', function(){
   return gulp.src([
     'node_modules/jquery/dist/jquery.min.js',
-    'node_modules/materialize-css/dist/js/materialize.min.js'
+    'node_modules/materialize-css/dist/js/materialize.min.js',
+    'node_modules/moment/min/moment-with-locales.min.js'
   ])
   .pipe(concat('js-deps.js'))
   .pipe(gulp.dest(config.desDir + '/js'))
