@@ -50,7 +50,12 @@ export class CreateForm {
   }
 
   datePickerCallback(e,b,c){
-    debugger;
+    let debut = document.querySelector('input[name="datePicker-start"]').value;
+    let date = moment();
+    let fin = document.querySelector('input[name="datePicker-end"]').value;
+    var dateDebut  = moment(debut, "YYYY-MM-DD");
+    var dateFin = moment(fin, "YYYY-MM-DD");
+    var numdays = dateFin.diff(dateDebut, "days");
   }
 
   createSubjectNumber () {
