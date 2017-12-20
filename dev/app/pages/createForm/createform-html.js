@@ -29,7 +29,8 @@ export function CreateFormHTML(data){
         <!-- Ajout autoCompleteComponent -->
 
         <!-- Ajout datePickerComponent -->
-        
+
+        <!-- Ajout jours de la selection -->
 
       </form>
 

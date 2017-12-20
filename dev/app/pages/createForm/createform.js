@@ -7,6 +7,7 @@ import { FirebaseProvider } from '../../providers/firebase/firebase-provider'
 export class CreateForm {
   constructor(app, fb, user) {
     this.app = app;
+    this.dateList = new Array();
     this.fbModel = new modelFbComponent(app, fb, user);
     this.autoComplete = new autoCompleteComponent(app);
     this.datePicker = new datePickerComponent(app);
@@ -39,6 +40,7 @@ export class CreateForm {
   }
 
   datePickerCallback(e,b,c){
+    this.dateList = new Array() ;
     let debut = document.querySelector('input[name="datePicker-start"]').value;
     let fin = document.querySelector('input[name="datePicker-end"]').value;
     let dateDebut  = moment(debut, "YYYY-MM-DD");
@@ -47,15 +49,19 @@ export class CreateForm {
 
     console.log('debut' +debut,'fin' + fin, 'date debut' +dateDebut, 'Date Fin' +dateFin);
 
-    // if ( numdays ) {
-
-    let dateList = new Array();
-
-    for(let i = 0; i < numdays+1; i++){
-      let newDate = moment(dateDebut,'YYYY-MM-DD').add(i, 'days').format("ddd D MMM YY");
-      dateList.push (newDate);
+    if ( dateFin == NaN || dateFin <= dateDebut ) {
+      dateFin = dateDebut;
+      console.log('nouvelle date de fin : '+dateFin);
     }
-    console.log(dateList);
+    if ( numdays ) {
+      for(let i = 0; i < numdays+1; i++){
+        let newDate = moment(dateDebut,'YYYY-MM-DD').add(i, 'days').format("ddd D MMM YY");
+        this.dateList.push (newDate);
+      }
+      console.log(this.dateList);
+
+      this.datePicker.configure('div.switch', 'afterend', this.datePicker.showDays);
+    }
 
 
 
