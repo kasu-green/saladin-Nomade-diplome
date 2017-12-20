@@ -26,8 +26,8 @@ export class CreateForm {
     this.datePicker.configure('div.switch', 'afterend', this.datePickerCallback);
     document.querySelector('div#datepicker').insertAdjacentHTML('afterend', `
       <div id="showDays">
-        <label>Jours</label>
-        <ul class="collection">
+        <ul class="collection with-header">
+          <li class="collection-header"><h4>Jours</h4></li>
         </ul>
       </div>
     `)
@@ -48,7 +48,7 @@ export class CreateForm {
 
   datePickerCallback(e,b,c){
     let element = document.querySelector('div#showDays > ul.collection');
-    element.innerHTML = '';
+    element.innerHTML = '<li class="collection-header"><h4>Jours</h4></li>';
     this.dateList = [];
     let date = {};
     let debut = document.querySelector('input[name="datePicker-start"]').value;
@@ -57,10 +57,8 @@ export class CreateForm {
     let dateFin = moment(fin, "YYYY-MM-DD");
     let numdays = dateFin.diff(dateDebut, "days");
 
-    console.log(dateDebut, dateFin, numdays);
-
     if ( numdays >= 0 ) {
-      element.innerHTML = '';
+      element.innerHTML = '<li class="collection-header"><h4>Jours</h4></li>';
       moment.locale('fr');
       for(var i = 0; i < numdays + 1 ; i++){
         var newDate = moment(dateDebut,'YYYY-MM-DD').add(i, 'days');
@@ -72,20 +70,18 @@ export class CreateForm {
       }
 
       this.dateList.forEach( d => {
-        element.innerHTML += `
+        element.insertAdjacentHTML('beforeend',  `
           <li class="collection-item">
-            <span class="title">${d.formatted}</span>
-            <p class="kcalAverage">...</p>
-            <a href="#!" class="secondary-content"><i class="material-icons">navigate_next</i></a>
+            <div>
+              ${d.formatted}
+              <a href="#!" class="secondary-content">
+                <i class="material-icons">navigate_next</i>
+              </a>
+            </div>
           </li>
-        `
+        `)
       })
-    //  debugger;
-      console.log(this.dateList);
     }
-
-
-
   }
 
   createSubjectNumber () {
