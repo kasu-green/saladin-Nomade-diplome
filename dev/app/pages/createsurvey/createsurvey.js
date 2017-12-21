@@ -15,6 +15,9 @@ export class CreateSurvey {
   initUI(){
     let html = CreateSurveyHTML()
     this.app.innerHTML = html;
+    this.fbModel.getFoodForAutoComplete().then (response => {
+      this.autoComplete.configure('div.switch', response, 'afterend');
+    });
 
   }
 

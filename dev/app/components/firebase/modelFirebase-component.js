@@ -22,7 +22,7 @@ export class modelFbComponent{
 
   // retourne un nouveau numero de patient
   createSubject(){
-    
+
     // Créer un numéro aléatoire entre 100 000 et 999 999
     let numero = 100000 + parseInt(Math.random()*100000);
 
@@ -52,9 +52,26 @@ export class modelFbComponent{
      return this.fb.firebaseRead("subjects").once('value');
   }
 
+  findAllFood() {
+     return this.fb.firebaseRead("subjects").once('value');
+  }
+
   // retourne une liste standardisée pour materialize autocomplete
   getSubjectsForAutoComplete(){
     return this.findAllSubjects().then (res => {
+        let auto = {};
+        let result = res.val();
+
+        for ( let key in result) {
+          auto[result[key].numero] = null;
+        }
+        return auto;
+    });
+  }
+
+  // retourne une liste standardisée pour materialize autocomplete
+  getFoodForAutoComplete(){
+    return this.findAllFood().then (res => {
         let auto = {};
         let result = res.val();
 
