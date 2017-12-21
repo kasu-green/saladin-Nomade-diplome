@@ -66,6 +66,7 @@ export class userPage {
         return
       }
       if (e.target.id == 'delete') {
+
         let li = event.target.closest('li');
         this.fb.firebaseReadRemoved('subjects', li.id);
       }

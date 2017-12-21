@@ -15,8 +15,7 @@ export function UserPageHTML(data){
 
     <section class="flex flex-column align-center just-center">
       <form id="userSearchForm" action="" class="flex align-center">
-        <!-- <input type="text" placeholder="recherche"> -->
-        <button id="btnSearch" class="background bg-cover"></button>
+        <!-- Recherche autocomplete -->
       </form>
 
       <ul id="listSubjects" class="collection"></ul>
