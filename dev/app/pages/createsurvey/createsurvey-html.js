@@ -34,6 +34,39 @@ export function CreateSurveyHTML(data){
 
       </form>
 
+      <ul id="foodIngredients" class="collection with-header">
+        <li class="collection-header"><h4>Ingrédients</h4></li>
+
+        <!-- li généré avec les aliments -->
+        <li class="collection-item">
+          <span class="title">Yogourt</span>
+          <p>2'150 kcal, 30g prot, 20g lip, 10g HdC</p>
+          <a href="#!" class="secondary-content">
+            <i class="material-icons">delete</i>
+          </a>
+        </li>
+      </ul>
+
+      <table id="nutrimentsTotal" class="striped">
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>Item Name</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Alvin</td>
+            <td>Eclair</td>
+          </tr>
+          <tr>
+            <td>Alan</td>
+            <td>Jellybean</td>
+          </tr>
+        </tbody>
+      </table>
+
     </section>
   `
 }

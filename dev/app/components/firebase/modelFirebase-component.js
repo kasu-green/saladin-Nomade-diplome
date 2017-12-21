@@ -52,8 +52,12 @@ export class modelFbComponent{
      return this.fb.firebaseRead("subjects").once('value');
   }
 
-  findAllFood() {
-     return this.fb.firebaseRead("subjects").once('value');
+  findAllFood(keyword) {
+    return new Promise((resolve,reject)=>{
+      jQuery.get("https://nlogserver.geekagency.ch/api/food?search="+keyword+"&locale=fr_FR",{},response=>{
+         resolve(response.data.foods);
+      });
+    });
   }
 
   // retourne une liste standardisée pour materialize autocomplete
@@ -70,15 +74,15 @@ export class modelFbComponent{
   }
 
   // retourne une liste standardisée pour materialize autocomplete
-  getFoodForAutoComplete(){
-    return this.findAllFood().then (res => {
-        let auto = {};
-        let result = res.val();
+  getFoodForAutoComplete(keyword){
+    return this.findAllFood(keyword).then (res => {
+      let auto = {};
+      let result = res;
 
-        for ( let key in result) {
-          auto[result[key].numero] = null;
-        }
-        return auto;
+      for ( let key in result) {
+        auto[result[key].DisplayName] = null;
+      }
+      return auto;
     });
   }
 
