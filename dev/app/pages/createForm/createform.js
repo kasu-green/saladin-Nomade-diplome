@@ -2,11 +2,12 @@ import { autoCompleteComponent } from '../../components/autocomplete/autocomplet
 import { datePickerComponent } from '../../components/datepicker/datepicker-component'
 import { modelFbComponent } from '../../components/firebase/modelFirebase-component'
 import { CreateFormHTML } from './createform-html'
+import { CreateSurvey } from '../createsurvey/createsurvey'
 import { userPage } from '../users/userpage'
 import { FirebaseProvider } from '../../providers/firebase/firebase-provider'
 
 export class CreateForm {
-  constructor(app, fb, user) {
+  constructor(app, fb, user, dateList) {
     this.app = app;
     this.dateList = [];
     this.fbModel = new modelFbComponent(app, fb, user);
@@ -53,6 +54,13 @@ export class CreateForm {
         new userPage(this.app, this.fb, this.user);
       }
     })
+    document.querySelector('#showDays').addEventListener('click', e => {
+      let btn = e.target.className;
+      if (btn == 'material-icons navigate_next') {
+        new CreateSurvey(this.app, this.fb, this.user, this.dateList)
+      }
+
+    })
   }
 
   datePickerCallback(e,b,c){
@@ -84,7 +92,7 @@ export class CreateForm {
             <div>
               ${d.formatted}
               <a href="#!" class="secondary-content">
-                <i class="material-icons">navigate_next</i>
+                <i class="material-icons navigate_next">navigate_next</i>
               </a>
             </div>
           </li>
