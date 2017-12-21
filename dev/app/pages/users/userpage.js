@@ -68,47 +68,8 @@ export class userPage {
       if (e.target.id == 'delete') {
         let li = event.target.closest('li');
         this.fb.firebaseReadRemoved('subjects', li.id);
-      } 
-
-      //
-      // document.forms[0].addEventListener('submit', e => {
-      //   e.preventDefault();
-      //   let title = document.getElementById('title').value;
-      //   let link = document.getElementById('link').value;
-      //   this.fb.path = 'userLinks';
-      //   this.fb.firebasePush(this.userid, {
-      //     title,
-      //     link
-      //   });
-      //   // On vide les champs de saisie du formulaire
-      //   document.getElementById('title').value = '';
-      //   document.getElementById('link').value = '';
-      //})
-
-
+      }
     })
   }
-
-  // databaseInnerHTML(snapshot) {
-  //   let ul = document.querySelector('ul#linksList')
-  //   // then add all new elements to UL
-  //   ul.innerHTML += `
-  //     <li id="${snapshot.key}">
-  //       <input type="text" value="${snapshot.val().title}">
-  //       <input type="text" value="${snapshot.val().link}">
-  //       <button class="toogleEdit">edit</button>
-  //       <button class="del">x</button>
-  //     </li>
-  //   `
-  // }
-
-  // readDatabase(){
-  //  this.fb.firebaseRead('userLinks')
-  //         .child(this.userid)
-  //         .on('child_added', snapshot =>{
-  //           this.databaseInnerHTML(snapshot);
-  //         })
-  // }
-
 
 }
