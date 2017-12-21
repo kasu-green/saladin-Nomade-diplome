@@ -19,9 +19,18 @@ export class CreateSurvey {
   initUI(){
     let html = CreateSurveyHTML()
     this.app.innerHTML = html;
+
     this.fbModel.getFoodForAutoComplete('boeuf').then (response => {
-      debugger;
       this.autoComplete.configure('#searchForm', response, 'beforeend');
+
+      let input = document.querySelector('#autocomplete-input');
+      input.addEventListener('keyup', _ => {
+        let value = input.value;
+        if ( value.length >= 3 ) {
+          console.log(input.value);
+        } 
+      })
+
     });
 
   }
@@ -35,6 +44,16 @@ export class CreateSurvey {
         new CreateForm(this.app, this.fb, this.user, this.dateList);
       }
     })
+  }
+
+  getFoodValue(){
+      let input = document.querySelector('#autocomplete-input').value;
+      input.oninput = function() {
+        result.innerHTML = input.value;
+      };
+      if ( inputValue.lenght(3) ) {
+
+      }
 
   }
 

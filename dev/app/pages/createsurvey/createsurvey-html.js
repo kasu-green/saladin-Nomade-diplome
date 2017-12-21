@@ -48,13 +48,6 @@ export function CreateSurveyHTML(data){
       </ul>
 
       <table id="nutrimentsTotal" class="striped">
-        <thead>
-          <tr>
-              <th>Name</th>
-              <th>Item Name</th>
-          </tr>
-        </thead>
-
         <tbody>
           <tr>
             <td>Alvin</td>

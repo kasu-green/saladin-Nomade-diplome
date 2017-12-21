@@ -104,7 +104,9 @@ a {
   text-decoration: underline;
 }
 
-
+i#delete {
+	z-index: 500;
+}
 
 /* 0.2 - FLEXBOX */
 @import 'imports/vars/flexbox';

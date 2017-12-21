@@ -40,7 +40,7 @@ export class userPage {
             <div>
               ${item.val().numero}
               <a href="#" class="secondary-content">
-                <i class="material-icons">delete</i>
+                <i id="delete" class="material-icons">delete</i>
                 <i class="material-icons">navigate_next</i>
               </a>
             </div>
@@ -60,37 +60,34 @@ export class userPage {
       new CreateForm(this.app, this.fb, this.user);
     })
 
-    document.forms[0].addEventListener('submit', e => {
-      e.preventDefault();
-      let title = document.getElementById('title').value;
-      let link = document.getElementById('link').value;
-      this.fb.path = 'userLinks';
-      this.fb.firebasePush(this.userid, {
-        title,
-        link
-      });
-      // On vide les champs de saisie du formulaire
-      document.getElementById('title').value = '';
-      document.getElementById('link').value = '';
+    // Effacer un élément de la liste
+    document.getElementById('listSubjects').addEventListener('click', e => {
+      if (e.target.nodeName != 'I') {
+        return
+      }
+      if (e.target.id == 'delete') {
+        let li = event.target.closest('li');
+        this.fb.firebaseReadRemoved('subjects', li.id);
+      } 
+
+      //
+      // document.forms[0].addEventListener('submit', e => {
+      //   e.preventDefault();
+      //   let title = document.getElementById('title').value;
+      //   let link = document.getElementById('link').value;
+      //   this.fb.path = 'userLinks';
+      //   this.fb.firebasePush(this.userid, {
+      //     title,
+      //     link
+      //   });
+      //   // On vide les champs de saisie du formulaire
+      //   document.getElementById('title').value = '';
+      //   document.getElementById('link').value = '';
+      //})
+
+
     })
   }
-    // Effacer un élément de la liste
-    // document.getElementById('linksList').addEventListener('click', e => {
-    //   if (e.target.nodeName != 'BUTTON') {
-    //     return
-    //   }
-    //   if (e.target.className == 'del') {
-    //     let li = event.target.closest('li');
-    //     console.log(li);
-    //     firebaseReadRemoved(li);
-    //   } else {
-    //     //bouton save/edit
-    //     console.log(e.target);
-    //   }
-    //
-    //   //this.firebaseReadRemoved();
-    // })
-  // }
 
   // databaseInnerHTML(snapshot) {
   //   let ul = document.querySelector('ul#linksList')
@@ -113,9 +110,5 @@ export class userPage {
   //         })
   // }
 
-  // firebaseReadRemoved(li){
-  //   this.fb.firebaseRead('userLinks')
-  //         .child(this.userid)
-  //         .set(null);
-  // }
+
 }

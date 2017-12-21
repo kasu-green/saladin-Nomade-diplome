@@ -41,7 +41,6 @@ export class CreateForm {
       let test = e.target.checked;
       let searchBar = document.getElementById('autocomplete-input');
       if (test == true) {
-
         this.createSubjectNumber();
       } else {
         this.searchSubjectNumber();

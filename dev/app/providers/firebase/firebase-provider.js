@@ -60,5 +60,11 @@ export class FirebaseProvider {
             .set(datas)
   }
 
+  firebaseReadRemoved(path, key){
+    debugger;
+    this.firebaseRead(path)
+          .child(key)
+          .set(null);
+  }
 
 }
