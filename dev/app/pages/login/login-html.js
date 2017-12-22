@@ -2,7 +2,7 @@ export function LoginHTML(data){
   return `
     <header>
       <nav class="flex align-center just-start">
-          <img src="../src/img/salad.png" alt="logo Saladin">
+          <img src="./src/img/salad.png" alt="logo Saladin">
           <h2 class="self-center">Se Connecter</h2>
       </nav>
     </header>

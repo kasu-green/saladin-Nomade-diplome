@@ -3,7 +3,7 @@ export function UserPageHTML(data){
     <header>
       <nav class="flex align-center just-between">
         <div class="flex">
-          <img src="../src/img/salad.png" alt="logo Saladin">
+          <img src="./src/img/salad.png" alt="logo Saladin">
           <h2 class="self-center">Sujets</h2>
         </div>
         <div class="flex">
