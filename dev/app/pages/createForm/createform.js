@@ -11,11 +11,11 @@ export class CreateForm {
     this.app = app;
     this.dateList = [];
     this.fbModel = new modelFbComponent(app, fb, user);
-    this.autoComplete = new autoCompleteComponent(app);
-    this.datePicker = new datePickerComponent(app);
+      this.datePicker = new datePickerComponent(app);
     this.fb = fb;
     this.user = user;
     this.initUI();
+    this.autoComplete = new autoCompleteComponent(app,'div.switch','afterend');
     this.loadEventUI();
   }
 
@@ -23,7 +23,7 @@ export class CreateForm {
     let html = CreateFormHTML()
     this.app.innerHTML = html;
     this.fbModel.getSubjectsForAutoComplete().then (response => {
-      this.autoComplete.configure('div.switch', response, 'afterend');
+      this.autoComplete.configure( response);
     });
     this.datePicker.configure('div.switch', 'afterend', this.datePickerCallback);
     document.querySelector('div#datepicker').insertAdjacentHTML('afterend', `

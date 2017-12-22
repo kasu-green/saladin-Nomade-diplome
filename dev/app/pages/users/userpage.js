@@ -5,7 +5,6 @@ import { modelFbComponent } from '../../components/firebase/modelFirebase-compon
 
 export class userPage {
   constructor(app, fb, user) {
-    this.autoComplete = new autoCompleteComponent(app);
     this.fbModel = new modelFbComponent(app, fb, user);
     this.app = app;
     this.user = user;
@@ -13,6 +12,8 @@ export class userPage {
     this.userid = user.uid;
     this.fb = fb;
     this.initUI();
+
+    this.autoComplete = new autoCompleteComponent(app,'#userSearchForm','afterbegin');
     this.loadEventUI();
   }
 
@@ -22,7 +23,7 @@ export class userPage {
     })
     this.app.innerHTML = html;
     this.fbModel.getSubjectsForAutoComplete().then (response => {
-      this.autoComplete.configure('#userSearchForm', response, 'afterbegin');
+      this.autoComplete.configure(response);
     });
     // Lire la liste des sujets et l'afficher
     this.fb.firebaseRead('subjects').on('value', snapshot => {

@@ -8,7 +8,6 @@ export class CreateSurvey {
     this.app = app;
     this.dateList = [];
     this.fbModel = new modelFbComponent(app, fb, user);
-    this.autoComplete = new autoCompleteComponent(app);
     //this.datePicker = new datePickerComponent(app);
     this.fb = fb;
     this.user = user;
@@ -19,8 +18,9 @@ export class CreateSurvey {
   initUI(){
     let html = CreateSurveyHTML()
     this.app.innerHTML = html;
+    this.autoComplete = new autoCompleteComponent(this.app,'#searchForm','beforeend');
 
-    this.fbModel.getFoodForAutoComplete('boeuf').then (response => {
+  /*  this.fbModel.getFoodForAutoComplete('boeuf').then (response => {
       this.autoComplete.configure('#searchForm', response, 'beforeend');
 
       let input = document.querySelector('#autocomplete-input');
@@ -28,11 +28,24 @@ export class CreateSurvey {
         let value = input.value;
         if ( value.length >= 3 ) {
           console.log(input.value);
-        } 
+        }
       })
+    });*/
 
-    });
+    let input = document.querySelector('#autocomplete-input');
+    input.addEventListener('keyup', _ => {
+      let value = input.value;
+      if ( value.length >= 3 ) {
+      //  console.log(input.value);
+      //  debugger;
+      
+        this.fbModel.getFoodForAutoComplete(value).then (response => {
 
+          this.autoComplete.configure(response);
+
+        });
+      }
+    })
   }
 
   loadEventUI() {
@@ -45,17 +58,5 @@ export class CreateSurvey {
       }
     })
   }
-
-  getFoodValue(){
-      let input = document.querySelector('#autocomplete-input').value;
-      input.oninput = function() {
-        result.innerHTML = input.value;
-      };
-      if ( inputValue.lenght(3) ) {
-
-      }
-
-  }
-
 
 }

@@ -1,13 +1,15 @@
 export class autoCompleteComponent {
-  constructor(app) {
+  constructor(app,selector,position) {
     this.app = app;
+    this.selector = selector;
+    this.data = {};
+    this.position= position;
+    this.initUI();
+    this.autoComplete();
   }
 
-  configure(selector, data, position){
-    this.selector = selector;
-    this.position = position;
+  configure(data){
     this.data = data;
-    this.initUI();
     this.autoComplete();
   }
 
